@@ -1,0 +1,109 @@
+
+<nz-layout>
+  <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null" [nzWidth]="250">
+    <div class="menu-header">
+      <img  class="logo"
+            [hidden]="isCollapsed"
+            src="assets/svg/logo.svg"
+            alt="Bringoo" />
+      <i  class="trigger" 
+          nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'" 
+          (click)="isCollapsed = !isCollapsed">
+      </i>
+    </div>
+    <ul nz-menu nzTheme="dark" nzMode="inline">
+      <li nz-menu-item *ngFor="let menu of filterMainMenus('main')" (click)="onMenuSelect(menu.name)" >
+          <i nz-icon [nzType]="menu.icon"></i>
+          <span>{{ menu.title }}</span>
+      </li>
+      <div class="menu-sales" [hidden]="isCollapsed">
+        <span>SALES CHANNEL</span>
+        <i nz-icon nzType="plus"></i>
+      </div>
+      <li nz-menu-item (click)="onMenuSelect('online-store')">
+        <i nz-icon nzType="shopping-cart"></i>
+        <span>Online Store</span>
+        <i nz-icon nzType="eye"></i>
+      </li>
+      <li nz-menu-item class="menu-settings" (click)="onMenuSelect('settings')">
+        <i nz-icon nzType="setting"></i>
+        <span>Settings</span>
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-layout class="right-panel">
+    <nz-content>
+      <nz-breadcrumb>
+        <nz-breadcrumb-item *ngFor="let breadcrumb of breadcrumbs">{{ breadcrumb.title }}</nz-breadcrumb-item>
+      </nz-breadcrumb>
+      <div nz-row class="inner-content">
+        <div nz-col [nzSpan]="18" [nzPush]="6" class="page-content">
+          <div *ngIf="isTaxMenuClicked">
+            <h1>Taxes Setup</h1>
+            <div nz-row>
+              <div nz-col [nzSpan]="24" class="page-header">
+                <nz-input-group [nzPrefix]="prefixIconSearch" nzSize="large">
+                  <input type="text" nz-input placeholder="input search text" (keyup)="search($event)" />
+                </nz-input-group>
+                <ng-template #prefixIconSearch>
+                  <i nz-icon nzType="search"></i>
+                </ng-template>
+                <button nz-button nzType="primary" nzSize="large">Insert Now</button>
+              </div>
+            </div>
+            <hr>
+            <nz-table #taxTable [nzData]="taxData" [nzPageSize]="6" nzPaginationType="small">
+              <thead>
+                <tr>
+                  <th>Code</th>
+                  <th>Name</th>
+                  <th>Symbol</th>
+                  <th>Country</th>
+                  <th>Active from</th>
+                  <th>Active to</th>
+                  <th>Status</th>
+                  <th>Value</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let data of taxTable.data">
+                  <td>{{data.code}}</td>
+                  <td>{{data.name}}</td>
+                  <td>{{data.symbol}}</td>
+                  <td>{{data.country}}</td>
+                  <td>{{data.active_from}}</td>
+                  <td>{{data.active_to}}</td>
+                  <td>
+                    <div [hidden]="!data.status" style="color: #4FBA5D;">
+                      <i nz-icon nzType="check"></i>Active
+                    </div>
+                  </td>
+                  <td>{{data.value}}</td>
+                  <td>
+                    <a><i nz-icon nzType="edit"></i></a>
+                    <nz-divider nzType="vertical"></nz-divider>
+                    <a (click)="onRemove(data.id)"><i nz-icon nzType="delete"></i></a>
+                  </td>
+                </tr>
+              </tbody>
+            </nz-table>
+          </div>
+        </div>
+        <div nz-col [nzSpan]="6" [nzPull]="18" class="submenu-panel">
+          <ul nz-menu nzMode='inline'>
+            <div *ngFor="let subMenu of selectedMenu.submenus" >
+              <li nz-menu-item *ngIf="!subMenu.items.length" (click)="onSubmenuClick(subMenu)">{{ subMenu.title }}</li>
+              <li nz-submenu [nzTitle]="subMenu.title" *ngIf="!!subMenu.items.length">
+                <ul>
+                  <li nz-menu-item *ngFor="let item of subMenu.items" (click)="onSubmenuItemClick(item, subMenu)">{{ item.title }}</li>
+                </ul>
+              </li>
+            </div>
+          </ul>
+        </div>
+      </div>
+    </nz-content>
+  </nz-layout>
+</nz-layout>
+  

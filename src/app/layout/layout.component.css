@@ -1,0 +1,176 @@
+.trigger {
+  font-size: 18px;
+  line-height: 64px;
+  cursor: pointer;
+  transition: color 0.3s;
+  color: #677798;
+}
+
+.trigger:hover {
+  color: #4FBA5D;
+}
+
+.logo {
+  height: 32px;
+  margin: 16px 16px 16px 0;
+}
+
+.ant-menu {
+  line-height: inherit;
+}
+
+.ant-menu-dark .ant-menu-sub, .ant-menu.ant-menu-dark, .ant-menu.ant-menu-dark .ant-menu-sub {
+  color: rgba(255,255,255,.65);
+  background: #2B2D3A;
+}
+
+.anticon-menu-fold {
+  float: right;
+}
+
+.anticon-menu-unfold {
+  padding-left: 4px;
+}
+
+i.anticon, .anticon-home, .ant-menu-inline-collapsed>.ant-menu-item .anticon{
+  font-size: 24px;
+  vertical-align: -.25em;
+}
+
+.ant-menu-inline-collapsed>.ant-menu-item {
+  padding: 0 calc(50% - 24px / 2);
+}
+
+.ant-menu.ant-menu-dark {
+  height: 90%;
+  position: relative;
+}
+.menu-header {
+  padding-left: 24px;
+  padding-right: 16px;
+}
+
+.menu-sales {
+  margin: 24px 0;
+  padding-left: 24px;
+  padding-right: 16px;
+}
+
+.menu-settings {
+  position: absolute;
+  bottom: 0;
+}
+
+i.anticon-plus {
+  float: right;
+  background-color: #4FBA5D;
+  border-radius: 8px;
+  font-size: 16px;
+  padding: 4px;
+}
+
+i.anticon-eye {
+  line-height: inherit;
+  float: right;
+  margin-right: 0;
+}
+
+span {
+  color: white;
+}
+
+nz-layout {
+  height: 100vh;
+  width: 100vw;
+}
+
+nz-sider {
+  background-color: #2B2D3A;
+}
+
+nz-content {
+  height: 100%;
+}
+
+nz-breadcrumb {
+  width: 100%;
+  padding: 16px 0 16px 24px;
+  font-size: 16px;
+  background-color: #F9F6F3;
+}
+
+.right-panel {
+  background: white;
+}
+
+.inner-content {
+  padding: 24px;
+  background: #fff;
+  height: 90%;
+}
+
+.ant-menu-inline, .ant-menu-vertical, .ant-menu-vertical-left {
+  border-right: none;
+}
+
+.submenu-panel {
+  border-right: 1px solid #f0f0f0;
+}
+
+.ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+  background-color: transparent;
+  color: #4FBA5D;
+}
+
+.ant-menu-submenu-expand-icon, .ant-menu-submenu-arrow {
+  display: none !important;
+}
+
+.ant-menu-item:hover, .ant-menu-item-active, .ant-menu:not(.ant-menu-inline) .ant-menu-submenu-open, .ant-menu-submenu-active, .ant-menu-submenu-title:hover {
+  color: #4FBA5D !important;
+}
+
+.ant-menu-inline .ant-menu-item::after {
+  border-right: 3px solid #4FBA5D;
+}
+
+i.ant-menu-submenu-arrow .ant-menu-submenu-arrow {
+  display: none !important;
+}
+    
+.custom-submenu {
+  background-color: black;
+}
+
+.page-content {
+  padding: 0 16px 32px 32px;
+  width: 100%;
+}
+
+.ant-input-affix-wrapper {
+  width: 80%;
+  border-radius: 4px;
+}
+
+.page-header > button {
+  float: right;
+  border-radius: 8px;
+}
+
+hr {
+  margin: 24px 0;
+  color: #E2D3C5;
+}
+
+.ant-table-pagination.ant-pagination.ant-table-pagination-right {
+  justify-content: flex-start !important;
+}
+
+.anticon-edit, .anticon-delete {
+  font-size: 16px !important;
+  color: black;
+}
+
+.anticon-check {
+  color: #4FBA5D;
+}
