@@ -1,0 +1,50 @@
+.right-sidebar {
+  background-color: white;
+  width: 700px;
+}
+
+.right-sidebar-header {
+  width: 100%;
+  padding: 16px 0 16px 24px;
+  font-size: 16px;
+  font-weight: bolder;
+  background-color: #F9F6F3;
+}
+
+.right-sidebar-content {
+  padding: 24px 16px;
+}
+
+.sidebar-close {
+  float: right;
+  margin-right: 16px;
+}
+
+.ant-picker-large {
+  width: 100%;
+}
+
+.status-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.status-active {
+  color: #4FBA5D;
+}
+
+.tab-container {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #d9d9d9;
+  margin-bottom: 24px;
+}
+
+.btn-lg {
+  padding: 16px 48px;
+  font-size: 24px;
+  line-height: 0.375em;
+  height: auto;
+  border-radius: 10px;
+}
