@@ -10,3 +10,11 @@
 .anticon-check {
   color: #4FBA5D;
 }
+
+.ant-table-thead > tr > th {
+  background: #F9F6F3;
+}
+
+.table-header {
+  background: #F9F6F3 !important;
+}

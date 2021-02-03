@@ -33,7 +33,7 @@
   </nz-sider>
   <nz-layout class="right-panel">
     <nz-content>
-      <ng-sidebar-container style="height:100vh; position: absolute;">
+      <ng-sidebar-container style="height:100vh; position: absolute;" *ngIf="isTaxMenuClicked">
         <ng-sidebar [(opened)]="isSidebarOpened" position="right" [showBackdrop]="true" #sidebar>
           <app-settings-update 
             (onToggleSidebar)="onToggleSidebar()"
@@ -58,6 +58,7 @@
                 <ng-template #prefixIconSearch>
                   <i nz-icon nzType="search"></i>
                 </ng-template>
+                <i nz-icon nzType="filter"></i>
                 <button nz-button nzType="primary" nzSize="large" (click)="onToggleSidebar()">Insert Now</button>
               </div>
             </div>
