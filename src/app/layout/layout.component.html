@@ -34,92 +34,13 @@
   <nz-layout class="right-panel">
     <nz-content>
       <ng-sidebar-container style="height:100vh; position: absolute;">
-        <!-- A sidebar -->
-        <ng-sidebar [(opened)]="_opened" position="right" [showBackdrop]="true" #sidebar>
-          <!-- <div class="right-sidebar">
-            <div class="right-sidebar-header">
-              Add new taxes
-              <a (click)="sidebar.close()" class="sidebar-close"><i nz-icon nzType="close"></i></a>
-            </div>
-            <div class="right-sidebar-content">
-              <form nz-form nzLayout="vertical" [formGroup]="validateForm" (ngSubmit)="submitForm()">
-                <nz-form-item>
-                  <nz-form-label>Country *</nz-form-label>
-                  <nz-form-control  nzErrorTip="Please input your name!">
-                    <nz-select
-                      id="country"
-                      formControlName="country"
-                      nzPlaceHolder="Please select your country"
-                      nzSize="large"
-                    >
-                      <nz-option nzValue="Germany" nzLabel="Germany"></nz-option>
-                      <nz-option nzValue="United States" nzLabel="United States"></nz-option>
-                      <nz-option nzValue="France" nzLabel="Germany"></nz-option>
-                      <nz-option nzValue="Spain" nzLabel="Spain"></nz-option>
-                      <nz-option nzValue="Russia" nzLabel="Russia"></nz-option>
-                    </nz-select>
-                  </nz-form-control>
-                </nz-form-item>
-                <nz-form-item>
-                  <nz-form-label>Code *</nz-form-label>
-                  <nz-form-control nzErrorTip="Please input your code!">
-                    <input nz-input formControlName="code" placeholder="Code" nzSize="large" />
-                  </nz-form-control>
-                </nz-form-item>
-                <nz-form-item>
-                  <nz-form-label>Value *</nz-form-label>
-                  <nz-form-control nzErrorTip="Please input your value!">
-                    <input nz-input formControlName="value" placeholder="Value" nzSize="large" />
-                  </nz-form-control>
-                </nz-form-item>
-                <div class="tab-container">
-                  <nz-tabset nzType="card" nzSize="small" (nzSelectChange)="onTabClick($event)">
-                    <nz-tab *ngFor="let tab of tabs" [nzTitle]="tab.name">
-                      <nz-form-item>
-                        <nz-form-label>Name ({{tab.name}}) *</nz-form-label>
-                        <nz-form-control nzErrorTip="Fill in {{tab.lang}}">
-                          <input nz-input formControlName="name" placeholder="Name" nzSize="large" />
-                        </nz-form-control>
-                      </nz-form-item>
-                      <nz-form-item>
-                        <nz-form-label>Description ({{tab.name}})</nz-form-label>
-                        <nz-form-control>
-                          <textarea formControlName="description" nz-input rows="3" placeholder=""></textarea>
-                        </nz-form-control>
-                      </nz-form-item>
-                    </nz-tab>
-                  </nz-tabset>
-                </div>
-                <h4>Effectiveness</h4>
-                <nz-form-item>
-                  <nz-form-label>Active from</nz-form-label>
-                  <nz-form-control>
-                    <nz-date-picker formControlName="active_from" nzSize="large" nzPlaceHolder=""></nz-date-picker>
-                  </nz-form-control>
-                </nz-form-item>
-                <nz-form-item>
-                  <nz-form-label>Active to</nz-form-label>
-                  <nz-form-control>
-                    <nz-date-picker formControlName="active_to" nzSize="large" nzPlaceHolder=""></nz-date-picker>
-                  </nz-form-control>
-                </nz-form-item>
-                <h4>Status</h4>
-                <div class="status-row">
-                  <span class="status-active" *ngIf="status">Active</span>
-                  <span *ngIf="!status">Deactive</span>
-                  <nz-switch [ngModel]="status" [ngModelOptions]="{standalone: true}" (ngModelChange)="status=$event"></nz-switch>
-                </div>
-                <hr>
-                <nz-form-item>
-                  <nz-form-control>
-                    <button nz-button nzType="primary" class="btn-lg">Add</button>
-                    <a nzType="text" class="btn-lg" (click)="sidebar.close()">Cancel</a>
-                  </nz-form-control>
-                </nz-form-item>
-              </form>
-            </div>
-          </div> -->
-          <app-settings-update></app-settings-update>
+        <ng-sidebar [(opened)]="isSidebarOpened" position="right" [showBackdrop]="true" #sidebar>
+          <app-settings-update 
+            (onToggleSidebar)="onToggleSidebar()"
+            (onSubmit)="onSubmit($event)"
+            [taxData]="taxData"
+          >
+          </app-settings-update>
         </ng-sidebar>
       </ng-sidebar-container>
       <nz-breadcrumb>
@@ -137,46 +58,16 @@
                 <ng-template #prefixIconSearch>
                   <i nz-icon nzType="search"></i>
                 </ng-template>
-                <button nz-button nzType="primary" nzSize="large" (click)="_toggleSidebar()">Insert Now</button>
+                <button nz-button nzType="primary" nzSize="large" (click)="onToggleSidebar()">Insert Now</button>
               </div>
             </div>
             <hr>
-            <nz-table #taxTable [nzData]="taxData" [nzPageSize]="6" nzPaginationType="small" *ngIf="isShowing">
-              <thead>
-                <tr>
-                  <th>Code</th>
-                  <th>Name</th>
-                  <th>Symbol</th>
-                  <th>Country</th>
-                  <th>Active from</th>
-                  <th>Active to</th>
-                  <th>Status</th>
-                  <th>Value</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let data of taxTable.data">
-                  <td>{{data.code}}</td>
-                  <td>{{data.name}}</td>
-                  <td>{{data.symbol}}</td>
-                  <td>{{data.country}}</td>
-                  <td>{{data.active_from}}</td>
-                  <td>{{data.active_to}}</td>
-                  <td>
-                    <div [hidden]="!data.status" style="color: #4FBA5D;">
-                      <i nz-icon nzType="check"></i>Active
-                    </div>
-                  </td>
-                  <td>{{data.value}}</td>
-                  <td>
-                    <a><i nz-icon nzType="edit"></i></a>
-                    <nz-divider nzType="vertical"></nz-divider>
-                    <a (click)="onRemove(data.id)"><i nz-icon nzType="delete"></i></a>
-                  </td>
-                </tr>
-              </tbody>
-            </nz-table>
+            <app-settings-table
+              [taxData]="taxData"
+              (onRemove)="onRemove($event)"
+              *ngIf="isShowing"
+            >
+            </app-settings-table>
           </div>
         </div>
         <div nz-col [nzSpan]="6" [nzPull]="18" class="submenu-panel">

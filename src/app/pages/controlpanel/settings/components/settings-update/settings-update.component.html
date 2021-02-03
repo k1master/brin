@@ -1,7 +1,7 @@
 <div class="right-sidebar">
   <div class="right-sidebar-header">
     Add new taxes
-    <a class="sidebar-close"><i nz-icon nzType="close"></i></a>
+    <a (click)="onCloseSidebar()" class="sidebar-close"><i nz-icon nzType="close"></i></a>
   </div>
   <div class="right-sidebar-content">
     <form nz-form nzLayout="vertical" [formGroup]="validateForm" (ngSubmit)="submitForm()">
@@ -75,7 +75,7 @@
       <nz-form-item>
         <nz-form-control>
           <button nz-button nzType="primary" class="btn-lg">Add</button>
-          <a nzType="text" class="btn-lg" >Cancel</a>
+          <a (click)="onCloseSidebar()" nzType="text" class="btn-lg" >Cancel</a>
         </nz-form-control>
       </nz-form-item>
     </form>

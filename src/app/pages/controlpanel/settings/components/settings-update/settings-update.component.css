@@ -18,6 +18,7 @@
 .sidebar-close {
   float: right;
   margin-right: 16px;
+  color: black;
 }
 
 .ant-picker-large {
@@ -47,4 +48,5 @@
   line-height: 0.375em;
   height: auto;
   border-radius: 10px;
+  margin-top: 16px;
 }

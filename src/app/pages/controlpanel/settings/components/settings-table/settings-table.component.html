@@ -1,0 +1,36 @@
+<nz-table #taxTable [nzData]="taxData" [nzPageSize]="6" nzPaginationType="small">
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Name</th>
+      <th>Symbol</th>
+      <th>Country</th>
+      <th>Active from</th>
+      <th>Active to</th>
+      <th>Status</th>
+      <th>Value</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of taxTable.data">
+      <td>{{data.code}}</td>
+      <td>{{data.name}}</td>
+      <td>{{data.symbol}}</td>
+      <td>{{data.country}}</td>
+      <td>{{data.active_from}}</td>
+      <td>{{data.active_to}}</td>
+      <td>
+        <div [hidden]="!data.status" style="color: #4FBA5D;">
+          <i nz-icon nzType="check"></i>Active
+        </div>
+      </td>
+      <td>{{data.value}}</td>
+      <td>
+        <a><i nz-icon nzType="edit"></i></a>
+        <nz-divider nzType="vertical"></nz-divider>
+        <a (click)="onRemoveRow(data.id)"><i nz-icon nzType="delete"></i></a>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>

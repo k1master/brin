@@ -3,11 +3,15 @@ import { CommonModule } from '@angular/common';
 import { SidebarModule } from 'ng-sidebar';
 import { NgZorroAntdModule } from '../ng-zorro-antd.module';
 import { LayoutComponent } from './layout.component';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SettingsUpdateComponent } from '../pages/controlpanel/settings/components/settings-update';
+import { SettingsUpdateComponent, SettingsTableComponent } from '../pages/controlpanel/settings/components';
 @NgModule({
-  declarations: [LayoutComponent, SettingsUpdateComponent],
+  declarations: [
+    LayoutComponent, 
+    SettingsUpdateComponent,
+    SettingsTableComponent
+  ],
   imports: [
     NgZorroAntdModule, 
     CommonModule, 

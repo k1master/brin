@@ -1,0 +1,12 @@
+.ant-table-pagination.ant-pagination.ant-table-pagination-right {
+  justify-content: flex-start !important;
+}
+
+.anticon-edit, .anticon-delete, .anticon-close{
+  font-size: 16px !important;
+  color: black;
+}
+
+.anticon-check {
+  color: #4FBA5D;
+}

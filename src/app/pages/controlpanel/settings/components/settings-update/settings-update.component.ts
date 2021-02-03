@@ -1,27 +1,27 @@
-import { Component, OnInit } from '@angular/core';
-import { menuItems, taxData, Taxes, langOptions } from '../../../../../shared/constants';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Taxes, langOptions } from '../../../../../shared/constants';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Subject } from 'rxjs';
-
 @Component({
   selector: 'app-settings-update',
   templateUrl: './settings-update.component.html',
   styleUrls: ['./settings-update.component.css']
 })
 export class SettingsUpdateComponent implements OnInit {
+  @Input() taxData!: any[];
+  @Output() onToggleSidebar: EventEmitter<boolean> = new EventEmitter();
+  @Output() onSubmit: EventEmitter<Taxes> = new EventEmitter();
 
   activedTab = 'DE';
-  _opened: boolean = false;
   validateForm!: FormGroup;
-  isShowing: boolean = true;
   status: boolean = false;  
   tabs = langOptions;
-
-  private _toggleSidebar() {
-    this._opened = !this._opened;
-  }
   
   constructor(private fb: FormBuilder) { }
+  
+  onCloseSidebar() {
+    this.initFormData();
+    this.onToggleSidebar.emit();
+  }
 
   submitForm(): void {
     let newData: any = {};
@@ -48,12 +48,11 @@ export class SettingsUpdateComponent implements OnInit {
     }
 
     if (this.validateForm.status === 'VALID') {
-      // newData.id = this.taxData.length + 1;
-      // newData.status = this.status;
-      // this.taxData.unshift(newData)
-      // this.isShowing = false
-      // this.reloadPage()
-      this._opened = false;
+      newData.id = this.taxData.length + 1;
+      newData.status = this.status;
+  
+      this.onSubmit.emit(newData)
+      this.onCloseSidebar();
     }
   }
 
@@ -61,7 +60,7 @@ export class SettingsUpdateComponent implements OnInit {
     this.activedTab = $event.tab.nzTitle
   }
 
-  ngOnInit(): void {
+  initFormData() {
     this.validateForm = this.fb.group({
       country: [null, [Validators.required]],
       code: [null, [Validators.required]],
@@ -73,4 +72,7 @@ export class SettingsUpdateComponent implements OnInit {
     });
   }
 
+  ngOnInit(): void {
+    this.initFormData();
+  }
 }
